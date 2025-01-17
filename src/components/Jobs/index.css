@@ -10,40 +10,49 @@
 
 .jobs-filters {
   width: 250px;
+  height: fit-content;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
 }
 
 .employment-type-filter,
-.salary-range-filter {
+.salary-range-filter,
+.location-type-filter {
   margin-bottom: 20px;
 }
 
 .employment-header,
-.salary-header {
+.salary-header,
+.location-header {
   font-size: 16px;
   font-weight: 500;
   color: #fff;
 }
 
 .employment-types-list,
-.salary-ranges-list {
+.salary-ranges-list,
+.location-types-list {
   list-style-type: none;
   padding: 0;
 }
 
 .employment-type-item,
-.salary-range-item {
+.salary-range-item,
+.location-type-item {
   margin-bottom: 10px;
 }
 
 .employment-checkbox,
-.salary-radio {
+.salary-radio,
+.location-checkbox {
   margin-right: 10px;
 }
 
 .employment-label,
-.salary-label {
+.salary-label,
+.location-label {
   font-size: 14px;
   color: #ccc;
 }
@@ -141,6 +150,7 @@ hr {
 
   .jobs-filters {
     width: 100%;
+    position: static;
   }
 
   .desktop-search-wrapper {

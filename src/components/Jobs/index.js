@@ -45,6 +45,29 @@ const salaryRangesList = [
   },
 ]
 
+const locationTypesList = [
+  {
+    label: 'Hyderabad',
+    locationId: 'HYDERABAD',
+  },
+  {
+    label: 'Bangalore',
+    locationId: 'BANGALORE',
+  },
+  {
+    label: 'Chennai',
+    locationId: 'CHENNAI',
+  },
+  {
+    label: 'Delhi',
+    locationId: 'DELHI',
+  },
+  {
+    label: 'Mumbai',
+    locationId: 'MUMBAI',
+  },
+]
+
 const apiStatusOptions = {
   INITIAL: 'INITIAL',
   LOADING: 'LOADING',
@@ -58,6 +81,7 @@ class Jobs extends Component {
     jobsApiStatus: apiStatusOptions.INITIAL,
     selectedEmploymentTypes: [],
     selectedSalaryRange: '',
+    selectedLocationTypes: [],
     profileData: [],
     jobsList: [],
     searchInput: '',
@@ -106,37 +130,28 @@ class Jobs extends Component {
     const {
       selectedEmploymentTypes,
       selectedSalaryRange,
+      selectedLocationTypes,
       searchInput: search,
     } = this.state
 
     const jobsUrl = `https://apis.ccbp.in/jobs?employment_type=${selectedEmploymentTypes.join(
+      ',',
+    )}&location=${selectedLocationTypes.join(
       ',',
     )}&minimum_package=${selectedSalaryRange}&search=${search}`
 
     this.fetchData(jobsUrl, 'jobsApiStatus', 'jobsList')
   }
 
-  handleEmploymentTypeChange = event => {
-    const {selectedEmploymentTypes} = this.state
-    const {id, checked} = event.target
+  handleCheckBoxFilterChange = (event, filterType) => {
+    const {checked, id} = event.target
 
-    if (checked) {
-      this.setState(
-        {
-          selectedEmploymentTypes: [...selectedEmploymentTypes, id],
-        },
-        this.fetchJobsData,
-      )
-    } else {
-      this.setState(
-        {
-          selectedEmploymentTypes: selectedEmploymentTypes.filter(
-            typeId => typeId !== id,
-          ),
-        },
-        this.fetchJobsData,
-      )
-    }
+    this.setState(prevState => {
+      const updatedFilter = checked
+        ? [...prevState[filterType], id]
+        : prevState[filterType].filter(filterId => filterId !== id)
+      return {[filterType]: updatedFilter}
+    }, this.fetchJobsData)
   }
 
   handleSalaryChange = event => {
@@ -152,8 +167,6 @@ class Jobs extends Component {
     const {
       profileData: {profile_details: profileDetails},
     } = this.state
-
-    console.log(profileDetails)
 
     return (
       <div className="profile-container">
@@ -190,8 +203,6 @@ class Jobs extends Component {
     const {
       jobsList: {jobs: jobsList},
     } = this.state
-
-    console.log(jobsList)
 
     return (
       <>
@@ -313,7 +324,12 @@ class Jobs extends Component {
                       id={type.employmentTypeId}
                       type="checkbox"
                       className="employment-checkbox"
-                      onChange={this.handleEmploymentTypeChange}
+                      onChange={e =>
+                        this.handleCheckBoxFilterChange(
+                          e,
+                          'selectedEmploymentTypes',
+                        )
+                      }
                     />
                     <label
                       htmlFor={type.employmentTypeId}
@@ -345,6 +361,30 @@ class Jobs extends Component {
                       className="salary-label"
                     >
                       {salary.label}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <hr />
+            <div className="location-type-filter">
+              <h1 className="location-header">Type of Locations</h1>
+              <ul className="location-types-list">
+                {locationTypesList.map(type => (
+                  <li key={type.locationId} className="location-type-item">
+                    <input
+                      id={type.locationId}
+                      type="checkbox"
+                      className="location-checkbox"
+                      onChange={e =>
+                        this.handleCheckBoxFilterChange(
+                          e,
+                          'selectedLocationTypes',
+                        )
+                      }
+                    />
+                    <label htmlFor={type.locationId} className="location-label">
+                      {type.label}
                     </label>
                   </li>
                 ))}

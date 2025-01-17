@@ -6,6 +6,9 @@
   align-items: center;
   padding: 10px 20px;
   background-color: #272727;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .app-header__logo {
