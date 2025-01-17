@@ -1,0 +1,153 @@
+.jobs-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #000;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.jobs-filters {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.employment-type-filter,
+.salary-range-filter {
+  margin-bottom: 20px;
+}
+
+.employment-header,
+.salary-header {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.employment-types-list,
+.salary-ranges-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.employment-type-item,
+.salary-range-item {
+  margin-bottom: 10px;
+}
+
+.employment-checkbox,
+.salary-radio {
+  margin-right: 10px;
+}
+
+.employment-label,
+.salary-label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+hr {
+  width: 100%;
+  background-color: #fff;
+}
+
+.profile-container {
+  width: 100%;
+  padding: 20px 15px;
+  border-radius: 26px;
+  background: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  background-size: cover;
+  margin: 20px 0;
+}
+
+.profile-image {
+  width: 55px;
+}
+
+.profile-name {
+  color: #6366f1;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.profile-bio {
+  font-size: 14px;
+  color: #475569;
+  margin: 0;
+}
+
+.search-container {
+  width: min(100%, 600px);
+  border: 1px solid #cbd5e1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.search-field {
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  flex: 1;
+}
+
+.search-submit {
+  width: auto;
+  padding: 10px 20px;
+  background-color: #2c364c;
+  border: none;
+  outline: none;
+}
+
+.search-icon {
+  font-size: 14px;
+  color: #fff;
+}
+
+.mobile-search-wrapper {
+  display: none;
+}
+
+.jobslist-wrapper {
+  flex: 1;
+  margin-top: 20px;
+}
+
+.jobs-list-container {
+  list-style: none;
+  padding: 0;
+}
+
+.profile__retry-button-container {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .jobs-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .jobs-filters {
+    width: 100%;
+  }
+
+  .desktop-search-wrapper {
+    display: none;
+  }
+
+  .mobile-search-wrapper {
+    display: block;
+  }
+}

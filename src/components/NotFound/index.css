@@ -1,0 +1,21 @@
+.not-found {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found__image {
+  width: min(100%, 300px);
+}
+
+.not-found__heading {
+  color: #fff;
+}
+
+.not-found__description {
+  color: #ccc;
+}
